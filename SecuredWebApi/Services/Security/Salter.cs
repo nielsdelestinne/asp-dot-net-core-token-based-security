@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace SecuredWebApi.Security
+namespace SecuredWebApi.Services.Security
 {
     public class Salter
     {

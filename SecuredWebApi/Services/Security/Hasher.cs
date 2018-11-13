@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using SecuredWebApi.Domain.Users;
 using System;
 using System.Text;
 
-namespace SecuredWebApi.Security
+namespace SecuredWebApi.Services.Security
 {
     public class Hasher
     {
@@ -22,9 +23,10 @@ namespace SecuredWebApi.Security
                 numBytesRequested: 256 / 8);
         }
 
-        public bool Validate(string userPassword, string userAppliedSalt, string userHashedPasswordAndSalt)
+        public bool DoesProvidedPasswordMatchPersistedPassword(string providedPassword, UserSecurity persistedUserSecurity)
         {
-            return CreateHashOfPasswordAndSalt(userPassword, userAppliedSalt).Equals(userHashedPasswordAndSalt);
+            return CreateHashOfPasswordAndSalt(providedPassword, persistedUserSecurity.AppliedSalt)
+                .Equals(persistedUserSecurity.PasswordHashedAndSalted);
         }
 
     }

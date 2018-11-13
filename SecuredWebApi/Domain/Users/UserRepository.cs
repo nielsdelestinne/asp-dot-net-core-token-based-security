@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SecuredWebApi.Domain.Users
 {
@@ -13,9 +14,9 @@ namespace SecuredWebApi.Domain.Users
             dummyUserDB = new Dictionary<Guid, User>();
         }
 
-        public User FindById(Guid userId)
+        public User FindByEmail(string email)
         {
-            return dummyUserDB[userId]; // (yes, this is unsafe)
+            return dummyUserDB.Values.Where(user => user.Email.Equals(email)).FirstOrDefault();            
         }
 
         public void Save(User user)

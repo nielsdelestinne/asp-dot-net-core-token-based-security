@@ -1,30 +1,27 @@
 ﻿using SecuredWebApi.Domain.Users;
-using SecuredWebApi.Security;
+using SecuredWebApi.Services;
 
 namespace SecuredWebApi.Api.Users
 {
     public class UserMapper
     {
-        private readonly Hasher _hasher;
-        private readonly Salter _salter;
+        private readonly UserAuthenticationService _userAuthService;
 
-        public UserMapper(Hasher hasher, Salter salter)
+        public UserMapper(UserAuthenticationService userAtuhService)
         {
-            _hasher = hasher;
-            _salter = salter;
+            _userAuthService = userAtuhService;
         }
 
-        public User ToUser(CreateUserDto userDto)
+        public User ToDomain(UserRequestDto userDto)
         {
-            return new User(userDto.Email, CreateUserSecurity(userDto.Password));
+            return new User(userDto.Email, _userAuthService.CreateUserSecurity(userDto.Password));
         }
 
-        private UserSecurity CreateUserSecurity(string userPassword)
+        public UserReplyDto ToDto(User user)
         {
-            var saltToBeUsed = _salter.CreateRandomSalt();
-            return new UserSecurity(
-                _hasher.CreateHashOfPasswordAndSalt(userPassword, saltToBeUsed),
-                saltToBeUsed);
+            return new UserReplyDto {
+                Email = user.Email
+            };
         }
     }
 }

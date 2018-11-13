@@ -1,7 +1,7 @@
 ﻿
 namespace SecuredWebApi.Api.Users
 {
-    public class CreateUserDto
+    public class UserRequestDto
     {
 
         public string Email { get; set; }

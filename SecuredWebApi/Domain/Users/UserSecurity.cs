@@ -16,5 +16,6 @@ namespace SecuredWebApi.Domain.Users
             PasswordHashedAndSalted = passwordHashedAndSalted;
             AppliedSalt = appliedSalt;
         }
+
     }
 }
