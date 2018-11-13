@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SecuredWebApi.Api.Users;
+using SecuredWebApi.Domain.Users;
+using SecuredWebApi.Security;
 
 namespace SecuredWebApi
 {
@@ -25,6 +28,13 @@ namespace SecuredWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services
+                .AddSingleton<Hasher>()
+                .AddSingleton<Salter>()
+                .AddSingleton<UserMapper>()
+                .AddSingleton<UserRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
