@@ -11,6 +11,10 @@ namespace SecuredWebApi.Services
     public class UserAuthenticationService
     {
 
+        // Never store secretive or sensitive information like this (never store them in source-code)
+        // Better approaches for development: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.1&tabs=windows
+        public static readonly string SECRET_KEY = "MyVerySecretKeyThatShouldNotBePlacedLikeThisHere";
+
         private readonly UserRepository _userRepository;
         private readonly Hasher _hasher;
         private readonly Salter _salter;
@@ -49,7 +53,7 @@ namespace SecuredWebApi.Services
 
         private SecurityTokenDescriptor CreateTokenDescription(User foundUser)
         {
-            var key = Encoding.ASCII.GetBytes("MyVerySecretKeyThatShouldNotBePlacedLikeThisHere");
+            var key = Encoding.ASCII.GetBytes(SECRET_KEY);
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

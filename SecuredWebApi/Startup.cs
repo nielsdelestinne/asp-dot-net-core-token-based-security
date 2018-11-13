@@ -38,7 +38,7 @@ namespace SecuredWebApi
 
             services.AddCors();
 
-            var key = Encoding.ASCII.GetBytes("MyVerySecretKeyThatShouldNotBePlacedLikeThisHere");
+            var key = Encoding.ASCII.GetBytes(UserAuthenticationService.SECRET_KEY);
 
             services
                 .AddAuthorization(options => {
