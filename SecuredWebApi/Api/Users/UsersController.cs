@@ -17,9 +17,10 @@ namespace SecuredWebApi.Api.Users
         private readonly UserMapper _userMapper;
         private readonly UserRepository _userRepository;
 
-        public UsersController(UserMapper userMapper)
+        public UsersController(UserMapper userMapper, UserRepository userRepository)
         {
             _userMapper = userMapper;
+            _userRepository = userRepository;
         }
 
         [HttpPost]
