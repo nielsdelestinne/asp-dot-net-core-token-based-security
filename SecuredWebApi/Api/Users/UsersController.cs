@@ -29,7 +29,7 @@ namespace SecuredWebApi.Api.Users
         {
             User user =_userMapper.ToUser(createUserDto);
             _userRepository.Save(user);
-            return Created("api/Users", user.Id.ToString());
+            return Ok();
         }
 
         // PUT: api/Users/5
