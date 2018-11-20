@@ -8,7 +8,7 @@ A sample project demonstrating how to provide authentication using ASP.NET Core 
 3. Authorization (Successfully perform an authorized request by providing a correct (JSON Web) Token)
 
 ### 1. Registration
-1. A user **registers** himself by providing an e-mail address and a password (the client has the responsibility to not provide this password as just plain-text).
+1. A user **registers** himself by providing an e-mail address and a password.
 2. The back-end application creates and persists a new `User` object for which it stores the e-mail address and the password (after employing salted password hashing).
 	- In other words: the password is never stored as plain-text. It is _salted_, _hashed_ and then persisted in its salted hashed format.
 	- The **salt** is always randomly created. Thus, it's important to also persist the used salt.
@@ -61,7 +61,7 @@ for which `<token>` is replaced by the JWT received by the back-end after succes
 
 ## Additional information on JWT
 
-JSON Web Tokens enables a secure way to transmit data between two parties in a form of a JSON object. It’s an open standard and it’s a popular mechanism for web authentication.
+JSON Web Tokens enables a secure way to transmit data between two parties in a form of a JSON object. Itâ€™s an open standard and itâ€™s a popular mechanism for web authentication.
 
 The JWT (JSON web token) is composed of a **header**, a **payload**, and a **signature** 
 which are concatenated by a dot (`.`) and encoded (`header.payload.signature`): `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpbW15QGdtYWlsLmNvbSIsIm5iZiI6MTU0MjEyNDAxOSwiZXhwIjoxNTQyMTUyODE5LCJpYXQiOjE1NDIxMjQwMTl9.e9myNXvazgagxcrsgZ2k2FUC7gIMEW-sk4nFGIYS79A`
